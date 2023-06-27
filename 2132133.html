@@ -38,11 +38,16 @@ const controls = new THREE.OrbitControls(camera, document.body);
     plane.rotation.set(-Math.PI/2,0,0);
     plane.position.set(0,0,0);
     scene.add( plane );
-        
+
+    // テクスチャー読み込み
+    var textureLoader = new THREE.TextureLoader();  
+    var texture = textureLoader.load("cit.png");
+    var mat = new THREE.MeshPhongMaterial();
+    mat.map = texture;        
         // 箱を作成
         var boxGeometry = new THREE.BoxGeometry(2, 0.3, 1);
         var boxMaterial = new THREE.MeshPhongMaterial({ color: 0x8b4513});
-        var box = new THREE.Mesh(boxGeometry, boxMaterial);
+        var box = new THREE.Mesh(boxGeometry, mat);
         box.castShadow = true; //影ができる
         box.position.set(-0.3,0.47,0);
         scene.add(box);
