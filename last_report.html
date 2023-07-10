@@ -124,7 +124,7 @@
         // マテリアルを作成
         const material = new THREE.PointsMaterial({
           // 一つ一つのサイズ
-          size: 100,
+          size: 1000,
           // 色
        
             color: 0xff1493,
@@ -136,6 +136,43 @@
         const mesh = new THREE.Points(geometry, material);
         scene.add(mesh);
       }
+        //数字変更
+    createStarField3();
+        //数字変更
+    function createStarField3() {
+        // 頂点情報を格納する配列
+        const vertices = [];
+
+        // 配置する範囲
+        const SIZE = 2000;
+        // 配置する個数
+        const LENGTH = 1000;
+
+        for (let i = 0; i < LENGTH; i++) {
+          const x = SIZE * (Math.random() - 0.5);
+          const y = SIZE * (Math.random() - 0.5);
+          const z = SIZE * (Math.random() - 0.5);
+
+          vertices.push(x, y, z);
+        }
+          // 形状データを作成
+        const geometry = new THREE.BufferGeometry();
+        geometry.setAttribute("position", new THREE.Float32BufferAttribute(vertices, 3));
+
+        // マテリアルを作成
+        const material = new THREE.PointsMaterial({
+          // 一つ一つのサイズ
+          size: 10,
+          // 色変更
+          color: 0x44f00f,
+        });
+
+        // 物体を作成
+        const mesh = new THREE.Points(geometry, material);
+        scene.add(mesh);
+      }
+
+        
       tick();
 
       // 毎フレーム時に実行されるループイベントです
@@ -157,8 +194,7 @@
       }
     </script>
     <h3>工夫点</h3>
-    ・サイズを100に変えてゴツゴツした直方体を中央に置いた。<br>
-    ・星屑を増やして2色にした。
+    
   </head>
   <body>
     <canvas id="myCanvas" data-engine="three.js r152" width="1920" height="1080" style="width: 960px; height: 540px;"></canvas>
